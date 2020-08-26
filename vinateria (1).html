@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+    <meta charset= "UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0"/>
+    <title>Vinateria "La esquina"</title>  
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.2/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.2/dist/sweetalert2.min.css"/>
+<!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>     -->
+
+  
+  </head>
+<body>
+  <div class="modal fade" id="inicio" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">iniciar seccion</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            <form id="formulario">
+              <div class="color">
+                  <fieldset> 
+                    <label class="ini" for="usuario">Nombre de usuario <em>*</em></label> 
+                    <input id="usuario">
+                    <br>
+                  </br>
+                    <label class="ini" for="password">Contraseña<em>*</em></label> 
+                    <input id="password"><br> 
+                    </br>
+                    </div>
+                  </br>
+                  <button class="btn bnt-success" onclick="inicio()">iniciar seccion</button>
+                </fieldset>
+              </div>
+            </form>
+          </p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+       <!---- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Registrarse</button>
+        </div>-->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+   
+  <div class="modal fade" id="comprar" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Pedidos  </h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            <form id="formulario">
+              <div class="color">
+                <fieldset>
+                <label class="com" for="producto">Productos que desea comprar <em>*</em></label> 
+                <input id="producto">
+                <label class="com" for="cantidad">Cantidad<em>*</em></label> 
+                <input id="cantidad">
+                <br>
+              <button class="btn btn-default" onclick="detalle()"> Comprar </button>
+            </fieldset>
+              </div>
+            </form>
+          </p>
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+       <!---- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Registrarse</button>
+        </div>-->
+      </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
+  <div class="modal fade" id="registro" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Registrarse</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            <form id="formulario">
+              <div class="color">
+                <fieldset>
+                  <label class="reg" for="nombre">Nombre completo <em>*</em></label>
+                  <input id="nombre">
+                  <br>
+                  <label class="reg" for="telefono">Teléfono</label>
+                  <input id="telefono" placeholder="xxx-xx-xx-xx">
+                  <br>
+                  <label class="reg" for="email"> Email <em>*</em></label>
+                  <input id="email" placeholder="ejemplo@correo.com">
+                  <br>
+                  <label class="reg" for="edad"> Edad</label>
+                  <input id="edad" min="18" max="80">
+                  <br>
+                  <label class="reg" for="password">Contaseña<em>*</em></label>
+                  <input id="password">
+                  <br>
+                  <label class="reg" for="sexo">Sexo</label>
+                  <select id="sexo">
+                    <option value="hembra">Mujer</option>
+                    <option value="macho">Hombre</option>
+                  </select><br>
+                  </br>
+                  <button class="btn bnt-success" onclick="registros()">Registrarse</button>
+                </fieldset>
+              </div>
+            </form>
+          </p>
+        </div>
+       <!---- <div class="modal-footer"> -->
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         <!---- <button type="button" class="btn btn-primary">Registrarse</button>
+        </div>-->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
+         <!--<button type="button" class="btn btn-primary">Registrarse</button>-->
+  <div class="modal fade" id="acompañamientos" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Acompañamientos</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            <form id="formulario">
+              <div class="color">
+                <fieldset>
+                 <h3>Quesos azules</h3>
+                 <h3>El vino tinto es delicioso y más versátil de lo que pensamos, por eso resulta la principal elección para quienes desean disfrutar de una copa en compañía de amigos o de su pareja. Sin embargo al momento de servirlo no siempre tenemos en cuenta el pica pica, es decir aquellos alimentos que combinan adecuadamente con esta elección y que sirven para contrastar o acentuar su sabor. Si estás completamente perdido y necesitas de orientación sigue leyendo, porque en unComo.com te explicamos con qué aperitivos se acompaña el vino tinto para disfrutarlo al máximo.</h3>
+                 <img src="https://t1.uc.ltmcdn.com/images/8/9/3/img_con_que_aperitivos_se_acompana_el_vino_tinto_35398_600.jpg" height="363" width="363"/>
+                 <h2>Quesos curados</h2>
+                  <h3>
+                    Unos de los aperitivos clásicos para acompañar el vino tinto son los quesos curados, cuyo sabor e intensidad combinan perfectamente con esta bebida. Se trata además de una alternativa muy simple ya que bastará con elegir dos o tres tipos y servir con un poco de pan para garantizar el disfrute de todos los invitados.
+                    Puedes optar por alternativas como:
+                    Quesos azules o Roquefort que van muy bien con tintos más pesados.
+                    Queso manchego o provolone que combinan perfectamente con los vinos Cabernet.
+                    Un buen parmesano que va genial con cualquier tinto.
+                    El Cheddar de intenso sabor que combina a la perfección con los Merlot.
+                    También puedes servir cremas de queso para untar y variar un poco los aperitivos.</h3>
+                 <img src="https://t1.uc.ltmcdn.com/images/8/9/3/img_35398_apa_263259_600.jpg" width="363" height="363"/>
+                 <h2>Aceitunas negras</h2>
+                  <h3>Un buen plato de aceitunas negras combina a la perfección con una copa de vino tinto, un buen embutido y algo de queso. Es una opción sencilla, fácil de servir, rápida y que te dejará quedar genial. ¿Qué más necesitas?</h3>
+                  <img src="https://t1.uc.ltmcdn.com/images/8/9/3/img_35398_apa_263262_600.jpg" width="363" height="363"/>
+                </fieldset>
+              </div>
+            </form>
+          </p>
+        </div>
+       <!---- <div class="modal-footer"> -->
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         <!---- <button type="button" class="btn btn-primary">Registrarse</button>
+        </div>-->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
+  <div class="modal fade" id="destilados" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Destilados</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            <form id="formulario">
+              <div class="color">
+                <fieldset>
+                 <h3>Destilados de vino</h3>
+                 <img src="https://unbuenvino.com/wp-content/uploads/2018/12/destilado-de-vino.jpg" height="363" width="363"/>
+                 <h3>Los destilados del vino se denominan genéricamente brandies, una palabra que deriva del holandés “branwijin” que significa “vino quemado”. El origen de los destilados de vino se remonta a un hallazgo de los comerciantes holandeses.
+
+
+ 
+                  Lo cierto es que se dieron cuenta que al destilar un vino ocupaba menos volumen en sus barcos. Por si no fuera poco (el espacio era muy necesario como siempre lo ha sido en el transporte marítimo), el vino destilado no se estropeaba por su alto contenido en alcohol.
+                  
+                  De aquellos orígenes surgen los destilados de vino, en cuyo grupo hay que diferenciar los aguardientes obtenidos directamente al destilar el vino y las holandas.
+                  
+                  Estas últimas incorporan al destilado residuos u hollejos del vino, que le aportan aromas y complejidad al producto resultante. Las holandas suelen envejecerse en barricas de roble y su elaboración es por tanto más compleja que la de un simple destilado.
+                  
+                  Dentro de las holandas más conocidas se encuentra el Brandy de Jerez, el Coñac francés, el Armagnac o el Pisco peruano. Son bebidas con un grado que oscila entre los 36 y el 45 % en alcohol.</h3>
+                 <h2>Coñac</h2>
+                  <h3>Es el brandy más famoso del mundo y se elabora en la ciudad francesa homónima de Coñac. Se elabora con uvas blancas muy poco aromáticas, con poca madurez, fundamentalmente la variedad Ugni blanc.
+
+                    El destilado se introduce en barricas de roble de 300 litros y permanece no menos de 2 años. Tras ese periodo se mezcla con otros coñacs de edades y calidades diferentes.
+                    
+                    Hay distintos tipos de Coñac entre los que se encuentran el 3 estrellas (con un mínimo de 30 meses de envejecimiento), VO (very old), o VSOP (very superior old pale), con un mínimo de 4 años y medio de envejecimiento. Pero más allá de estas categorías hay coñacs que pueden tener hasta 50 años de envejecimiento, que se corresponden con las categorías Extras, XO, Napoleón, Grande reserve, Hors d´age.
+                    </h3>
+                    <h2>Brandy de Jerez</h2>
+                    <h3>
+                      Tiene su propia denominación de origen, así como su particular proceso de elaboración que se limita al Triángulo de Jerez, formado por los municipios de Jerez de la Frontera, Sanlúcar de Barrameda y El Puerto de Santa María.</h3>
+                 <img src="https://unbuenvino.com/wp-content/uploads/2018/12/Brandies-Jerez.jpg" width="363" height="363"/>
+                <h3>El brandy de jerez se elabora a partir de vinos blancos de las variedades Airen y Palomino. El destilado se introduce en barricas de roble de 500l, en las que anteriormente se ha debido elaborar vinos de jerez. De este modo, el origen de esas barricas de vino de Jerez marcará de manera determinante el tipo de brandy resultante.
+
+                  Según su proceso de crianza y envejecimiento, se distingue entre el brandy solera, que cuenta con año de envejecimieneto, el brandy reserva, con 3 años, o el brandy gran reserva, con 10 años de envejecimiento en las barricas de vino de Jerez.</h3>
+                 <h2>Armañac</h2>
+                 <h3>
+                  Esta bebida procedente de viñedos de la zona de Armañac, situada en el en el sudoeste de Francia. Con una tasa de alcohol igual o superior a 40%, es el resultado de la destilación de vino blanco seco obtenido a partir de cuatro cepas diferentes.</h3>
+                 <img src="https://unbuenvino.com/wp-content/uploads/2018/12/Armagnac.jpg" width="363" height="363"/>
+                <h3>fue en origen la primera bebida en ser destilada en Francia. Se elabora con vinos blancos procedentes de las variedades de uva ugni blanc, bacco, la colombard y la folle blanche. Su vino base se deja macerar con las lías lo que le proporciona aromas especiales. Se envejece en barricas de 400 litros y se puede encontrar con envejecimientos de más de 10 años.</h3>
+     <h2>Pisco</h2>
+     <h3>La paternidad del pisco es un asunto controvertido. Chile y Perú se la disputan con diferentes argumentos. Más allá el debate sobre quién inventó este destilado de uva conocido en el mundo entero, lo cierto es que se estima que Chile produce 10 veces más pisco que Perú.</h3>
+     <img src="https://unbuenvino.com/wp-content/uploads/2018/12/Piscos_chilenos.jpg" width="363" height="363"/>
+              <h3>El origen del pisco está vinculado al cultivo de la uva iniciado por los conquistadores españoles y se elabora a partir de un vino dulce elaborado con Moscatel o Pedro Ximénez fundamentalmente, la uva pisquera, como la denominan en la zona, que crece en los valles andinos. Así, el pisco es otro aguardiente elaborado a base de uvas.
+
+                Una de las maneras más célebres de preparar el pisco es el pisco sour, una bebida a base de limón, que recibe este nombre del “sour”, la familia de cócteles que utilizan limón como parte de su receta.</h3>
+    </fieldset>
+              </div>
+            </form>
+          </p>
+        </div>
+       <!---- <div class="modal-footer"> -->
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         <!---- <button type="button" class="btn btn-primary">Registrarse</button>
+        </div>-->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
+  <div class="modal fade" id="ofertas" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Ofertas</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            <form id="formulario">
+              <div class="color">
+                <fieldset>
+                  <h1>Estas de oferta con los siguientes tipos de vinos  </h1>
+                  <h2>15% de descuento en la compra que cualquiera de nuestros productos</h2>
+                 <img src="https://bodegasalianza.vteximg.com.br/arquivos/ids/177458-1000-1000/33273-1.jpg?v=637320059880300000" width="363" height="363"/>
+                <h2>20% en la compra de cualquiera de nuestros destilados</h2>
+                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTzj_-o0EfqFD3-Hn_N60lbn30_W0aBCMZYaKTOxS90u3sNRP9mHVpN10ThXKggBXRZ5AqhLM8&usqp=CAc" width="363" height="363"/>
+                <h2>20% en cualquier compra de nuestros acompañamientos </h2>
+                 <img src="data:image/jpeg;base64,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" width="363" height="363"/>
+                  
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWpcL9vuO-_bcZYG4asEodf6InpfCdjzwg6g&usqp=CAU" width="363" height="363"/>
+                  
+              </fieldset>
+              </div>
+            </form>
+          </p>
+        </div>
+       <!---- <div class="modal-footer"> -->
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         <!---- <button type="button" class="btn btn-primary">Registrarse</button>
+        </div>-->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
+<div class="modal fade" id="productos" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Productos</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            <form id="formulario">
+                              <div class="color">
+                                <fieldset>
+            <h1>Nuestros productos </h1>
+ <img src="data:image/jpeg;base64,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" alt="" width="346" height="200" class="alignleft size-full wp-image-3032" />
+  <label>Vino Tempranillo. Share a tansolo $150</label>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTo84SutN8PWxEXa5atykQNs0Wb8DX9lC8uLg&usqp=CAU" height="207" width="346" /> <label>Vino Tempranillo. Share a tansolo $150</label>
+   <img src="data:image/jpeg;base64,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" height="207" width="346"/>
+  <label>Vino Pinot Noir a tansolo $220</label>
+ <img src="https://viparmex.com.mx/viparmexTienda/wp-content/uploads/2018/05/VARIETAL-CABERNET-01.png" alt="" width="346" height="207" class="alignleft size-full wp-image-3032" />                    
+ <label>Vino Zinfandel a tansolo $300</label>
+<img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQeSxqjAYKW7tUvew28EOV2bk9YH3afLJzj5PJ_NjWJOk0Mp7SPtd-5j0affUVMJ7xBReb9fTIfpQ&usqp=CAc" alt="" width="346" height="207" class="alignleft size-full wp-image-3032" />
+<br>
+<label>Vino Syrah a tansolo $350</label>
+<br>
+<img src="data:image/jpeg;base64,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" height="207" width="346"/>
+<br>
+<label>Vino Merlot a tansolo $360</label>
+<br>
+<img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRe9IwEcN1EI8x-JYznMWWdZEW8ptQve400JOgw0b-Uh8hf0XFikVu4xzrprMBayVCHyGTMyNCmlW8&usqp=CAc" alt="" width="346" height="200" class="alignleft size-full wp-image-3035" />
+<br>
+<label>Vino Malbec a tansolo $380</label>
+                              </fieldset>
+                              </div>
+                            </form>
+                          </p>
+                        </div>
+                       <!---- <div class="modal-footer"> -->
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                         <!---- <button type="button" class="btn btn-primary">Registrarse</button>
+                        </div>-->
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->  
+                              </fieldset>
+             
+  <div class="menu">
+    <h1> Vinateria "La esquina"</h1>
+      <ul>
+        <li><a href="#registro" data-toggle="modal" data-target="#registro"><span class="glyphicon glyphicon-paperclip "> </span> Registrarse</a></li>
+        <li><a href="#inicio" data-toggle="modal" data-target="#inicio"><span class="glyphicon glyphicon-user "> </span> iniciar secion</a></li>
+            <li><a href="#comprar" data-toggle="modal" data-target="#comprar"><span class="glyphicon glyphicon-tag "> </span> Comprar</a></li>      
+          <h3>Horario de Lunes a Viernes de 8:00 am a 10:00 pm y Sabados y Domingos de 8:00 am a 7:00 pm </h3>
+            <br>
+          </ul>
+            <nav>
+               <li><a href="#productos"  data-toggle="modal" data-target="#productos"><span class="glyphicon glyphicon-tags "> </span> productos</a></li>
+                    <li><a href="#acompañamientos" data-toggle="modal" data-target="#acompañamientos"><span class="glyphicon glyphicon-check "> </span>  Acompañamientos</a></li>
+                    <li><a href="#destilados" data-toggle="modal" data-target="#destilados"><span class="glyphicon glyphicon-option-horizontal "> </span>  Destilados</a></li>
+                    <li><a href="#ofertas" data-toggle="modal" data-target="#ofertas"><span class="glyphicon glyphicon-option-horizontal "> </span>  Ofertas</a></li>
+ <br>
+                  <!---- desplazar menu -->
+                  <!----
+                    <ul class="menu">
+                    <li><a href="#" class="linkprod"> Productos</a>
+                        <ul class="submenu">
+                            <li><a href="#">Tempranillo. Share</a></li>
+                            <li><a href="#">Grenache. Share</a></li>
+                            <li><a href="#">Pinot Noir</a></li>
+                            <li><a href="#">Zinfandel</a></li>
+                            <li><a href="#">Syrah</a></li>
+                            <li><a href="#">Merlot</a></li>
+                            <li><a href="#">Malbec</a></li>
+                            <li><a href="#">Cabernet Sauvignon</a></li>
+                        </ul>
+                        <br>
+                       <li><a href="#" class="linkprod"> Envutidos variado</a>
+                        <ul class="submenu">
+                          <li><a href="#"> Jamón serrano</a></li>
+                          <li><a href="#">Chorizo de buena calidad</a></li>
+                          <li><a href="#"> Lomo embuchado</a></li>
+                          <li><a href="#">  Salami</a></li>
+                          <li><a href="#">  Salchichón</a></li>
+                            </ul>
+                      <br>
+                      <li><a href="#" class="linkprod"> Acompañamientos</a>
+                        <ul class="submenu">
+                          <li><a href="#">Quesos azules</a></li>
+                          <li><a href="#">Quesos curados</a></li>
+                          <li><a href="#">Aceitunas negras</a></li>
+                            </ul>
+                        <li><a href="#" class="linkprod"> Destilados </a>
+                          <ul class="submenu">
+                              <li><a href="#">Coñac</a></li>
+                              <li><a href="#"> Brandy de Jerez</a></li>
+                              <li><a href="#">Armañac</a></li>
+                              <li><a href="#">Pisco</a></li>
+                            </ul>
+                  </nav>   
+                
+       <br>
+      </br>
+        </div> -->
+        <br>
+        <div id="imag" class="imag"></div>
+              <div id="text" class="text">
+        <h2>Contamos con los siguientes tipos de Vino Tinto </h2>
+          <h3>Nuestar ofertas:</h3>
+  <h3>En la compra de 5 botellas de rebajamos un 20% de descuento </h3>
+  <br>
+<img src="https://novili.com.co/blog/wp-content/uploads/2018/12/vinosnobles-blog-montes-alpha-carmenere-portada.jpg" alt="" width="346" height="200" class="alignleft size-full wp-image-3032" />
+<img src="https://img.freepik.com/psd-gratis/plantilla-maqueta-botella-vino-copas_225210-17.jpg?size=626&ext=jpg&ga=GA1.2.1555531007.1597893467" alt="" width="346" height="207" class="alignleft size-full wp-image-3037" />
+<img src="https://img.freepik.com/psd-gratis/etiqueta-blanco-botella-vino_53876-89678.jpg?size=626&ext=jpg&ga=GA1.2.1555531007.1597893467" height="207" width="346"/>
+<img src="https://img.freepik.com/psd-gratis/etiqueta-botella-vino-realista-maqueta_69509-234.jpg?size=626&ext=jpg&ga=GA1.2.1555531007.1597893467" alt="" width="346" height="200" class="alignleft size-full wp-image-3035" />
+<img src="https://image.freepik.com/psd-gratis/maqueta-botellas-vino_69509-112.jpg" alt="" width="346" height="207" class="alignleft size-full wp-image-3032" />
+<div class="tel" id="tel">
+    <h1>Recuerda ellos siguen tu ejemplo</h1>
+    <h2>Contactanos</h2>
+<label>Nuestros telefonos son: </label> <label>492-786-25-74</label> <label>492-328-67-76</label> <label>999-14-78</label>
+<br>   
+<label>Nuestra direccion de correo eletronico es:</label> <label>Vianteriajose@gmail.com</label>
+<br>
+<label>Estamos ubicados en:</label> <label>Buleavar centro "Las escondidas" </label> <label>#165</label>
+
+           <div class="social">
+            <ul>
+<li><a href="https://www.facebook.com/" target="_blank"><span  aria-hidden="true"></span><img src="data:image/png;base64,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" alt="" width="50" height="50" class="alignleft size-full wp-image-3032"/></a></h2>  
+</div>
+</ul>
+        </table>
+    </div>
+</div>
+</div>
+<div class="col-md-4"></div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link 
+rel="stylesheet" 
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+crossorigin="anonymous"
+/>
+<link 
+rel="stylesheet" 
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" 
+crossorigin="anonymous"
+/>
+<script 
+src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+crossorigin="anonymous"></script>
+<link rel="stylesheet" href="vinateria.css"/>
+<script src="laesquina.js"></script>
+</html>
